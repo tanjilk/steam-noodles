@@ -1,14 +1,28 @@
 /*
+
+Repository from https://github.com/tanjilk/steam-farm
 // @author tanjilk
 */
+
+
 // Argument
 const argum = process.argv[2];
+process.env.TZ = 'Europe/Portugal';
+d = new Date();
+
+console.log("███████╗████████╗███████╗ █████╗ ███╗   ███╗      ███████╗ █████╗ ██████╗ ███╗   ███╗");
+console.log("██╔════╝╚══██╔══╝██╔════╝██╔══██╗████╗ ████║      ██╔════╝██╔══██╗██╔══██╗████╗ ████║");
+console.log("███████╗   ██║   █████╗  ███████║██╔████╔██║█████╗█████╗  ███████║██████╔╝██╔████╔██║");
+console.log("╚════██║   ██║   ██╔══╝  ██╔══██║██║╚██╔╝██║╚════╝██╔══╝  ██╔══██║██╔══██╗██║╚██╔╝██║");
+console.log("███████║   ██║   ███████╗██║  ██║██║ ╚═╝ ██║      ██║     ██║  ██║██║  ██║██║ ╚═╝ ██║");
+console.log("╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝      ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝");
+                                                                                     
 
 
 // If the argument doesnt pass
 
 if(!argum){
-	console.log('Necessita de passar o username como um argumento.');
+	console.log('É necessário passar o username como um argumento.');
 }
 
 else {
@@ -36,6 +50,7 @@ else {
 		client.logOn(logOnOptions);
 		client.on('error', function(e){
 			console.log('Um erro aconteceu, por favor tente de novo.');
+			console.log(d.toLocaleTimeString());
 		});
 		
 	}
@@ -63,7 +78,8 @@ else {
 			setTimeout(wait1, 3000);
 		} else {
 			function waiterr(){
-				console.log("\x1b[31m", "Um erro inesperado aconteceu. Tente outra vez. ❗")	
+				console.log("\x1b[31m", "Um erro inesperado aconteceu. Tente outra vez. ❗");
+				d.toLocaleTimeString();	
 			}
 			setTimeout(waiterr, 2000)
 			
@@ -112,7 +128,7 @@ else {
 				client.on('friendRelationship', function(steamID, relationship){
 					if(relationship == SteamUser.Steam.EFriendRelationship.RequestRecipient){
 						client.addFriend(steamID);
-						client.chatMessage("Hello!");
+						client.chatMessage("Succesfly Accepted!");
 					};
 				});
 			}
@@ -121,6 +137,8 @@ else {
 			}
 		} else{
 			console.log("\x1b[31m", "Um erro inesperado aconteceu. Tente outra vez. ❗");
+			console.log(d.toLocaleTimeString());
+
 		}
 
 		client.on("friendMessage", function(steamID, message){
